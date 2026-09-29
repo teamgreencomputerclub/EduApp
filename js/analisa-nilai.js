@@ -1,8 +1,3 @@
-/**
- * EduGrade v1.0 — Analisis Nilai Controller
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
-
 let activeRaporFilter = 'Semua'; // 'Semua', 'Umum', 'Peminatan'
 let editingSubjectId = null;
 let editingTKAIndex = null;
@@ -13,7 +8,7 @@ $(document).ready(function () {
   // Inisialisasi data halaman
   initAnalisaPage();
 
-  // Tab Utama Navigasi Sub-Tab Atas: [Semua] | [Analisis Nilai Rapor] | [Analisis Nilai TKA] | [Analisis Nilai UTBK] | [Rasionalisasi PTN]
+  // Tab Utama Navigasi Sub-Tab Atas
   $('.sub-nav-tab').on('click', function () {
     const targetTab = $(this).data('tab');
     $('.sub-nav-tab').removeClass('active bg-[#0066FF] text-white shadow-sm font-bold')
@@ -56,9 +51,7 @@ function initAnalisaPage() {
   renderTabRasionalisasi();
 }
 
-/* ========================================================
-   TAB 1: SEMUA (Insight Gabungan)
-   ======================================================== */
+/* TAB 1: SEMUA (Insight Gabungan)*/
 function renderTabSemua() {
   const subjects = StorageService.getRaporSubjects();
   const tkaList = StorageService.getTKATryouts();
@@ -160,9 +153,9 @@ function renderSummaryPTNMatrix(choices, masterList, raporStats, tkaStats, utbkS
   });
 }
 
-/* ========================================================
+/* 
    TAB 2: ANALISIS NILAI RAPOR
-   ======================================================== */
+    */
 function renderTabRapor() {
   const subjects = StorageService.getRaporSubjects();
   const stats = CalculationService.calculateRaporStats(subjects);
@@ -352,9 +345,7 @@ function setupRaporEvents() {
   });
 }
 
-/* ========================================================
-   TAB 3: ANALISIS NILAI TKA
-   ======================================================== */
+/* TAB 3: ANALISIS NILAI TKA*/
 function renderTabTKA() {
   const tryouts = StorageService.getTKATryouts();
   const stats = CalculationService.calculateTKAStats(tryouts);
@@ -510,9 +501,7 @@ function setupTKAEvents() {
   });
 }
 
-/* ========================================================
-   TAB 4: ANALISIS NILAI UTBK (7 Subtes)
-   ======================================================== */
+/* TAB 4: ANALISIS NILAI UTBK (7 Subtes)*/
 function renderTabUTBK() {
   const tryouts = StorageService.getUTBKTryouts();
   const stats = CalculationService.calculateUTBKStats(tryouts);
@@ -689,9 +678,7 @@ function setupUTBKEvents() {
   });
 }
 
-/* ========================================================
-   TAB 5: RASIONALISASI PTN (SNBP vs SNBT)
-   ======================================================== */
+/* TAB 5: RASIONALISASI PTN (SNBP vs SNBT)*/
 function renderTabRasionalisasi() {
   const choices = StorageService.getPTNChoices();
   const masterList = StorageService.getMasterPTN();
@@ -844,9 +831,7 @@ function openPTNSelectorModal(slot) {
   $('#modal-ptn-selector').removeClass('hidden').addClass('flex');
 }
 
-/* ========================================================
-   SIMULASI OCR PEMINDAI NILAI RAPOR CLIENT-SIDE
-   ======================================================== */
+/* SIMULASI OCR PEMINDAI NILAI RAPOR CLIENT-SIDE*/
 function setupOCREvents() {
   $('#btn-open-ocr-scanner').on('click', function () {
     $('#modal-ocr-scanner').removeClass('hidden').addClass('flex');

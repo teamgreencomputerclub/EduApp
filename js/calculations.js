@@ -1,7 +1,3 @@
-/**
- * EduGrade v1.0 — Mathematical & Analytics Engine
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
 
 const CalculationService = {
   /**

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — EduGrade v1.0 | Platform Analytics & Student Tools</title>
-  <meta name="description" content="EduGrade v1.0 — Platform Analytics & Student Tools untuk lomba INVENTION 2026. Subtema: Building Smarter Communities Through Digital Learning.">
+  <title>Dashboard — EduApp v1.0 | Platform Analytics & Student Tools</title>
+  <meta name="description" content="EduApp v1.0 — Platform Analytics & Student Tools untuk siswa indonesia.">
   
   <!-- Synchronous Theme & Profile Preloader (Eliminates Dark Mode Flash & Identity Flicker) -->
   <script>
@@ -56,7 +56,7 @@
   <!-- WRAPPER UTAMA DENGAN SOLID PRIMARY SIDEBAR -->
   <div class="flex flex-1 min-h-screen">
 
-    <!-- DESKTOP PRIMARY SIDEBAR (#0066FF) -->
+    <!-- DESKTOP PRIMARY SIDEBAR -->
     <aside class="hidden lg:flex w-72 bg-[#0066FF] flex-col justify-between p-6 text-white shadow-xl z-30">
       <div>
         <!-- BRAND LOGO & SUBTEMA -->
@@ -66,34 +66,26 @@
           </div>
           <div>
             <div class="flex items-center space-x-1.5">
-              <span class="text-xl font-extrabold tracking-tight">EduGrade</span>
+              <span class="text-xl font-extrabold tracking-tight">EduApp</span>
               <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">v1.0</span>
             </div>
-            <p class="text-[11px] text-blue-100/80 font-medium">INVENTION 2026</p>
+            <p class="text-[11px] text-blue-100/80 font-medium">Khadijah Grade Analytics Engine</p>
           </div>
-        </div>
-
-        <!-- BADGE SUBTEMA LOMBA -->
-        <div class="bg-white/10 rounded-xl p-3 mb-6 border border-white/10">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-blue-200 block mb-0.5">Subtema Lomba</span>
-          <p class="text-xs text-blue-50 font-medium leading-snug">"Building Smarter Communities Through Digital Learning"</p>
         </div>
 
         <!-- MENU UTAMA NAVIGASI -->
         <nav class="space-y-1.5" aria-label="Menu Utama">
-          <!-- 1. Dashboard (Aktif) -->
+
           <a href="dashboard.html" data-page="dashboard" class="nav-link-item flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 font-bold bg-white text-[#0066FF] shadow-sm">
             <i class="fa-solid fa-chart-pie w-5 text-center mr-3"></i>
             <span>Dashboard</span>
           </a>
 
-          <!-- 2. Analisis Nilai -->
           <a href="analisa-nilai.html" data-page="analisa" class="nav-link-item flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium">
             <i class="fa-solid fa-chart-line w-5 text-center mr-3"></i>
             <span>Analisis Nilai</span>
           </a>
 
-          <!-- 3. Alat Pelajar -->
           <a href="alat-pelajar.html" data-page="alat" class="nav-link-item flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium">
             <i class="fa-solid fa-toolbox w-5 text-center mr-3"></i>
             <span>Alat Pelajar</span>
@@ -103,25 +95,22 @@
             <span class="text-[10px] font-bold uppercase tracking-wider text-blue-200/80 px-4">Pengaturan & Bantuan</span>
           </div>
 
-          <!-- 4. Setting (Membuka Modal Setting) -->
-          <button data-modal-trigger="setting" class="w-full flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium text-left">
-            <i class="fa-solid fa-gear w-5 text-center mr-3"></i>
-            <span>Setting</span>
-          </button>
 
-          <!-- 5. Guide (Membuka Modal Guide) -->
-          <button data-modal-trigger="guide" class="w-full flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium text-left">
-            <i class="fa-solid fa-circle-question w-5 text-center mr-3"></i>
-            <span>Guide</span>
-          </button>
-
-          <!-- 6. Beranda (Landing Page) -->
           <a href="home.html" class="flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium">
             <i class="fa-solid fa-house w-5 text-center mr-3"></i>
             <span>Beranda</span>
           </a>
 
-          <!-- 7. Keluar / Logout -->
+          <button data-modal-trigger="setting" class="w-full flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium text-left">
+            <i class="fa-solid fa-gear w-5 text-center mr-3"></i>
+            <span>Setting</span>
+          </button>
+
+          <button data-modal-trigger="guide" class="w-full flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-blue-100/75 hover:bg-white/15 hover:text-white font-medium text-left">
+            <i class="fa-solid fa-circle-question w-5 text-center mr-3"></i>
+            <span>Guide</span>
+          </button>
+
           <button type="button" class="btn-logout w-full flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-150 text-rose-200 hover:bg-rose-500/20 hover:text-white font-medium text-left">
             <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center mr-3"></i>
             <span>Keluar Akun</span>
@@ -131,8 +120,8 @@
 
       <!-- FOOTER SIDEBAR -->
       <div class="pt-4 border-t border-white/15 text-[11px] text-blue-200/70">
-        <p class="font-medium text-white/90">EduGrade v1.0 Platform</p>
-        <p>SNPMB Kemendikbudristek Data Engine</p>
+        <p class="font-medium text-white/90">EduApp v1.0 Platform</p>
+        <p>Khadijah Grade Analytics Engine</p>
       </div>
     </aside>
 
@@ -147,8 +136,8 @@
                 <i class="fa-solid fa-graduation-cap"></i>
               </div>
               <div>
-                <span class="text-lg font-bold">EduGrade v1.0</span>
-                <p class="text-[10px] text-blue-100/80">INVENTION 2026</p>
+                <span class="text-lg font-bold">EduApp v1.0</span>
+                <p class="text-[10px] text-blue-100/80">Khadijah Grade Analytics Engine</p>
               </div>
             </div>
             <button id="btn-close-mobile-menu" class="p-2 text-white/80 hover:text-white">
@@ -173,19 +162,27 @@
             <button data-modal-trigger="guide" class="w-full flex items-center px-4 py-3 rounded-xl text-sm font-medium text-blue-100 hover:bg-white/15 text-left">
               <i class="fa-solid fa-circle-question w-5 mr-3"></i>Guide
             </button>
+
+            <div class="pt-3 border-t border-white/15 my-2"></div>
+            <a href="home.html" class="flex items-center px-4 py-3 rounded-xl text-sm font-medium text-blue-100 hover:bg-white/15">
+              <i class="fa-solid fa-house w-5 mr-3"></i>Beranda
+            </a>
+            <button type="button" class="btn-logout w-full flex items-center px-4 py-3 rounded-xl text-sm font-medium text-rose-200 hover:bg-rose-500/20 text-left">
+              <i class="fa-solid fa-arrow-right-from-bracket w-5 mr-3"></i>Keluar Akun
+            </button>
           </nav>
         </div>
 
         <div class="text-xs text-blue-200/80 pt-4 border-t border-white/15">
-          EduGrade v1.0 &bull; INVENTION 2026
+          EduApp v1.0 &bull; Khadijah Grade Analytics Engine
         </div>
       </div>
     </div>
 
-    <!-- MAIN CANVAS AREA (#F0F4F9) -->
+    <!--MAIN CANVAS AREA-->
     <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
 
-      <!-- HEADER GLOBAL (Berlaku di Semua Halaman Utama) -->
+      <!-- HEADER GLOBAL-->
       <header class="sticky top-0 z-20 bg-[#F0F4F9]/90 dark:bg-[#0b1329]/90 backdrop-blur-md px-6 lg:px-10 py-4 border-b border-slate-200/60 dark:border-slate-800/60">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
           <!-- Pojok Kiri: Teks Nama Halaman Aktif -->
@@ -194,7 +191,7 @@
               <i class="fa-solid fa-bars text-base"></i>
             </button>
             <div>
-              <span class="text-lg lg:text-xl font-black tracking-tight text-slate-800 dark:text-white">[Dashboard]</span>
+              <span class="text-lg lg:text-xl font-black tracking-tight text-slate-800 dark:text-white">Dashboard</span>
               <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Ringkasan kesiapan akademik & histori belajar</p>
             </div>
           </div>
@@ -222,17 +219,13 @@
       <!-- CONTENT BODY DASHBOARD -->
       <div class="flex-1 px-6 lg:px-10 py-6 max-w-6xl mx-auto w-full space-y-8">
 
-        <!-- 1. HERO SECTION -->
+        <!-- HERO SECTION -->
         <section class="bg-gradient-to-r from-blue-700 via-[#0066FF] to-sky-500 rounded-3xl p-6 lg:p-8 text-white shadow-lg relative overflow-hidden">
           <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
 
           <!-- Teks Salam & Subtitle -->
           <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
             <div>
-              <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium text-blue-100 mb-3">
-                <i class="fa-solid fa-sparkles text-amber-300"></i>
-                <span>Building Smarter Communities Through Digital Learning</span>
-              </div>
               <h1 class="hero-greeting-text text-2xl lg:text-4xl font-extrabold tracking-tight">
                 <script>
                   (function() {
@@ -322,7 +315,7 @@
           </div>
         </section>
 
-        <!-- 2. SECTION 2: RECENTLY STUDY TOOLS -->
+        <!-- SECTION 2: RECENTLY STUDY TOOLS -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div>
@@ -340,7 +333,7 @@
           </div>
         </section>
 
-        <!-- 3. SECTION RINGKASAN TARGET PTN (PETA PILIHAN AKADEMIK) -->
+        <!-- SECTION RINGKASAN TARGET PTN (PETA PILIHAN AKADEMIK) -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div>
@@ -361,9 +354,7 @@
     </main>
   </div>
 
-  <!-- ========================================================
-       MODAL POP-UP 1: SETTING (#modal-setting)
-       ======================================================== -->
+  <!-- MODAL POP-UP 1: SETTING (#modal-setting)-->
   <div id="modal-setting" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div class="modal-backdrop absolute inset-0 bg-slate-900/60 backdrop-blur-xs"></div>
     <div class="modal-content-box relative w-full max-w-lg bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col z-10">
@@ -384,7 +375,7 @@
         </button>
       </div>
 
-      <!-- 2 Sub-Tab Navigasi: [Profile] | [Theme] -->
+      <!-- 2 Sub-Tab Navigasi-->
       <div class="flex border-b border-slate-100 dark:border-slate-700/80 px-6">
         <button class="tab-setting-btn py-3 px-4 text-sm font-semibold border-b-2 border-blue-600 text-blue-600 dark:text-blue-400 active" data-tab="profile">
           <i class="fa-regular fa-user mr-2"></i>Profile
@@ -483,9 +474,7 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       MODAL POP-UP 2: GUIDE (#modal-guide)
-       ======================================================== -->
+  <!-- MODAL POP-UP 2: GUIDE (#modal-guide)-->
   <div id="modal-guide" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
     <div class="modal-backdrop absolute inset-0 bg-slate-900/60 backdrop-blur-xs"></div>
     <div class="modal-content-box relative w-full max-w-2xl bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col z-10 max-h-[90vh]">
@@ -498,7 +487,7 @@
           </div>
           <div>
             <h3 class="text-lg font-bold text-slate-800 dark:text-white leading-tight">Panduan Pengguna (User Guide)</h3>
-            <p class="text-xs text-slate-400">EduGrade v1.0 &bull; INVENTION 2026</p>
+            <p class="text-xs text-slate-400">EduApp v1.0 &bull; Khadijah Grade Analytics Engine</p>
           </div>
         </div>
         <button class="btn-close-modal p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
@@ -506,7 +495,7 @@
         </button>
       </div>
 
-      <!-- 5 Sub-Tab Navigasi: [Tentang] | [FAQ] | [Tutorial] | [Glosarium] | [Contact] -->
+      <!-- Navigasi-->
       <div class="flex overflow-x-auto border-b border-slate-100 dark:border-slate-700/80 px-4 sm:px-6 scrollbar-none">
         <button class="tab-guide-btn py-3 px-3.5 text-xs sm:text-sm font-semibold rounded-lg my-1 mr-1 transition-colors active bg-blue-600 text-white" data-tab="tentang">Tentang</button>
         <button class="tab-guide-btn py-3 px-3.5 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 rounded-lg my-1 mr-1 transition-colors hover:bg-slate-100 dark:hover:bg-slate-700" data-tab="faq">FAQ</button>
@@ -518,16 +507,13 @@
       <!-- Tab Content Area Scrollable -->
       <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-600 dark:text-slate-300">
         
-        <!-- 1. TAB TENTANG -->
+        <!--TAB TENTANG -->
         <div id="guide-pane-tentang" class="guide-tab-pane space-y-4">
           <div class="p-4 rounded-2xl bg-blue-50/70 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/40">
-            <h4 class="font-extrabold text-[#0066FF] dark:text-blue-400 text-base mb-1">EduGrade v1.0 — Platform Analytics &amp; Student Tools</h4>
-            <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
-              Dikembangkan khusus untuk perlombaan <strong>INVENTION 2026</strong> dengan subtema <em>"Building Smarter Communities Through Digital Learning"</em>.
-            </p>
+            <h4 class="font-extrabold text-[#0066FF] dark:text-blue-400 text-base mb-1">EduApp v1.0 — Platform Analytics &amp; Student Tools</h4>
           </div>
           <p class="leading-relaxed">
-            EduGrade v1.0 dirancang untuk memberdayakan pelajar SMA/K sederajat di seluruh Indonesia dalam mengelola data akademik secara mandiri, terukur, dan transparan. Melalui pendekatan rekayasa regresi linier dan integrasi passing grade resmi SNPMB, siswa dapat memahami peluang seleksi perguruan tinggi negeri secara objektif.
+            EduApp v1.0 dirancang untuk memberdayakan pelajar SMA/K sederajat di seluruh Indonesia dalam mengelola data akademik secara mandiri, terukur, dan transparan. Melalui pendekatan rekayasa regresi linier dan integrasi passing grade resmi SNPMB, siswa dapat memahami peluang seleksi perguruan tinggi negeri secara objektif.
           </p>
           <div class="border-t border-slate-100 dark:border-slate-700 pt-3">
             <h5 class="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-2">Atribusi Open Source &amp; Lisensi</h5>
@@ -539,7 +525,7 @@
           </div>
         </div>
 
-        <!-- 2. TAB FAQ -->
+        <!-- TAB FAQ -->
         <div id="guide-pane-faq" class="guide-tab-pane hidden space-y-3.5">
           <div class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/80">
             <h5 class="font-bold text-slate-800 dark:text-slate-100 text-xs sm:text-sm mb-1">Q1: Apakah data nilai saya aman?</h5>
@@ -563,7 +549,7 @@
           </div>
         </div>
 
-        <!-- 3. TAB TUTORIAL -->
+        <!-- TAB TUTORIAL -->
         <div id="guide-pane-tutorial" class="guide-tab-pane hidden space-y-3.5">
           <div class="flex items-start space-x-3">
             <span class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/60 text-[#0066FF] dark:text-blue-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
@@ -598,7 +584,7 @@
           </div>
         </div>
 
-        <!-- 4. TAB GLOSARIUM -->
+        <!-- TAB GLOSARIUM -->
         <div id="guide-pane-glosarium" class="guide-tab-pane hidden space-y-3">
           <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/80 dark:border-slate-700">
             <h5 class="font-bold text-[#0066FF] dark:text-blue-400 text-xs">Indeks Kesiapan Akademik</h5>
@@ -616,22 +602,22 @@
           </div>
         </div>
 
-        <!-- 5. TAB CONTACT -->
+        <!-- TAB CONTACT -->
         <div id="guide-pane-contact" class="guide-tab-pane hidden space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-700">
               <span class="text-slate-400 block mb-0.5">Help Desk Siswa</span>
-              <strong class="text-slate-800 dark:text-white">support@edugrade.id</strong>
+              <strong class="text-slate-800 dark:text-white">teamgreencomputerclub@gmail.com</strong>
             </div>
             <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-700">
-              <span class="text-slate-400 block mb-0.5">Kompetisi</span>
-              <strong class="text-slate-800 dark:text-white">INVENTION 2026</strong>
+              <span class="text-slate-400 block mb-0.5">Website lembaga</span>
+              <strong class="text-slate-800 dark:text-white">teamgreencomputerclub.github.io</strong>
             </div>
           </div>
 
           <form id="form-guide-feedback" class="space-y-3 pt-2">
             <span class="text-xs font-bold text-slate-700 dark:text-slate-200 block">Kirim Masukan &amp; Feedback Juri</span>
-            <textarea class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-white text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" rows="3" placeholder="Tuliskan catatan atau apresiasi untuk pengembang EduGrade..." required></textarea>
+            <textarea class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-white text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none" rows="3" placeholder="Tuliskan catatan atau apresiasi untuk pengembang EduApp..." required></textarea>
             <button type="submit" class="px-4 py-2 bg-[#0066FF] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-colors">
               Kirim Feedback
             </button>
@@ -650,7 +636,7 @@
     </div>
   </div>
 
-  <!-- jQuery via CDN (Satu-satunya JS Library yang Diperbolehkan) -->
+  <!-- jQuery via CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
   <!-- LocalStorage Engine & Calculations -->

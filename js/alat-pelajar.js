@@ -1,7 +1,4 @@
-/**
- * EduGrade v1.0 — Alat Pelajar Controller
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
+
 
 let activeTool = null; // 'pomodoro', 'pembersih', 'sitasi', 'jadwal'
 let pomodoroTimer = null;
@@ -64,9 +61,7 @@ function activateTool(toolId) {
   }
 }
 
-/* ========================================================
-   1. POMODORO TIMER TOOL
-   ======================================================== */
+/* POMODORO TIMER TOOL*/
 function initPomodoroTool() {
   updatePomodoroDisplay();
 
@@ -163,9 +158,7 @@ function playChimeAudio() {
   }
 }
 
-/* ========================================================
-   2. PEMBERSIH TEKS TOOL
-   ======================================================== */
+/* PEMBERSIH TEKS TOOL*/
 function initPembersihTool() {
   const input = $('#text-cleaner-input');
 
@@ -184,7 +177,7 @@ function initPembersihTool() {
 
   $('#btn-clean-lines').off('click').on('click', function () {
     let text = input.val();
-    text = text.replace(/\n\s*\n\s*\n+/g, '\n\n'); // bersihkan enter berlebihan
+    text = text.replace(/\n\s*\n\s*\n+/g, '\n\n'); 
     input.val(text);
     updateCleanerMetrics();
     showToast('Jarak baris berhasil dirapikan!');
@@ -217,27 +210,20 @@ function initPembersihTool() {
       return;
     }
 
-    // 1. Standarisasi tanda kutip ganda dan tunggal (curly/smart quotes & primes)
     text = text.replace(/[\u201C\u201D\u201E\u201F\u00AB\u00BB]/g, '"')
                .replace(/[\u2018\u2019\u201A\u201B\u0060\u00B4]/g, "'");
 
-    // 2. Standarisasi dash panjang (em-dash, en-dash, minus, horizontal bar) menjadi tanda hubung standar
     text = text.replace(/[\u2013\u2014\u2015\u2212]/g, '-');
 
-    // 3. Standarisasi aneka bullet point & icon list menjadi tanda hubung standar (-)
     text = text.replace(/[\u2022\u2023\u25E6\u2043\u2219\u25AA\u25AB\u25CF\u25C6\u25C7\u25B6\u25B8\u25BA\u2713\u2714\u2717\u2718\u2605\u2606\u2731\u2732]/g, '-');
 
-    // 4. Standarisasi whitespace khusus, zero-width space, invisible chars & replacement char
     text = text.replace(/[\u00A0\u2000-\u200A\u202F\u205F\u3000]/g, ' ')
                .replace(/[\u200B-\u200D\uFEFF\u00AD\uFFFD]/g, '');
 
-    // 5. Bersihkan emoji & grafis karakter non-teks
     text = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
 
-    // 6. Bersihkan simbol aneh / noise karakter dari copy-paste PDF / OCR yang mengotori teks
     text = text.replace(/[~^|\\§©®™°±¶×÷≠≤≥∞√<>#*`]/g, ' ');
 
-    // 7. Rapikan spasi berlebih hasil pembersihan karakter
     text = text.replace(/[ \t]+/g, ' ');
 
     input.val(text);
@@ -273,9 +259,7 @@ function updateCleanerMetrics() {
   $('#metric-read-time').text(`~${readMinutes} mnt baca`);
 }
 
-/* ========================================================
-   3. GENERATOR SITASI TOOL (APA, MLA, IEEE)
-   ======================================================== */
+/* GENERATOR SITASI TOOL (APA, MLA, IEEE)*/
 function initSitasiTool() {
   // Ganti tipe sumber: Buku, Jurnal, Website
   $('.btn-citation-source').off('click').on('click', function () {
@@ -371,9 +355,7 @@ function generateCitation() {
   $('#citation-output-raw').text(formattedRaw);
 }
 
-/* ========================================================
-   4. PERENCANA JADWAL BELAJAR TOOL
-   ======================================================== */
+/* PERENCANA JADWAL BELAJAR TOOL*/
 function initJadwalTool() {
   renderStudyTasks();
 

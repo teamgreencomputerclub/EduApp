@@ -1,7 +1,4 @@
-/**
- * EduGrade v1.0 — LocalStorage State Management
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
+
 
 const STORAGE_KEYS = {
   USER_PROFILE: 'edugrade_profile',
@@ -441,15 +438,22 @@ const StorageService = {
 
   // === AUTHENTICATION & DEMO USER MANAGEMENT ===
   getDemoAccount() {
-    return DEMO_ACCOUNT;
+    const customPass = localStorage.getItem('edugrade_custom_password');
+    const profile = this.getProfile();
+    return {
+      ...DEMO_ACCOUNT,
+      nama: profile.nama || DEMO_ACCOUNT.nama,
+      kelas: profile.kelas || DEMO_ACCOUNT.kelas,
+      password: customPass || DEMO_ACCOUNT.password
+    };
   },
 
   getRegisteredUsers() {
     try {
       const raw = localStorage.getItem(STORAGE_KEYS.REGISTERED_USERS);
-      return raw ? JSON.parse(raw) : [DEMO_ACCOUNT];
+      return raw ? JSON.parse(raw) : [this.getDemoAccount()];
     } catch (e) {
-      return [DEMO_ACCOUNT];
+      return [this.getDemoAccount()];
     }
   },
 
@@ -460,66 +464,161 @@ const StorageService = {
   getAuthUser() {
     try {
       const raw = localStorage.getItem(STORAGE_KEYS.AUTH_USER);
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !parsed.username) return null;
+      return parsed;
     } catch (e) {
       return null;
     }
   },
 
   setAuthUser(user) {
+    if (!user) {
+      this.logout();
+      return;
+    }
     localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(user));
     // Pastikan user profile juga sinkron
-    if (user) {
-      const currentProfile = this.getProfile();
-      currentProfile.nama = user.nama || currentProfile.nama;
-      if (user.kelas) currentProfile.kelas = user.kelas;
-      if (user.sekolah) currentProfile.sekolah = user.sekolah;
-      if (user.foto) currentProfile.foto = user.foto;
-      this.setProfile(currentProfile);
+    const currentProfile = this.getProfile();
+    currentProfile.nama = user.nama || currentProfile.nama;
+    if (user.kelas) currentProfile.kelas = user.kelas;
+    if (user.sekolah) currentProfile.sekolah = user.sekolah;
+    if (user.foto) currentProfile.foto = user.foto;
+    if (user.password) {
+      currentProfile.password = user.password;
+      localStorage.setItem('edugrade_custom_password', user.password);
     }
+    this.setProfile(currentProfile);
+  },
+
+  updateUserCredentials(username, newPassword, newNama, newKelas) {
+    const cleanUser = (username || 'bhisma').trim().toLowerCase();
+    const users = this.getRegisteredUsers();
+
+    if (newPassword) {
+      localStorage.setItem('edugrade_custom_password', newPassword);
+    }
+
+    let found = false;
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].username.toLowerCase() === cleanUser || cleanUser === 'bhisma') {
+        if (newPassword) users[i].password = newPassword;
+        if (newNama) users[i].nama = newNama;
+        if (newKelas) users[i].kelas = newKelas;
+        found = true;
+      }
+    }
+
+    if (!found) {
+      users.push({
+        username: cleanUser,
+        password: newPassword || 'password123',
+        nama: newNama || cleanUser,
+        kelas: newKelas || 'XII IPA',
+        sekolah: 'SMAN 1 Teladan',
+        foto: DEMO_ACCOUNT.foto
+      });
+    }
+
+    this.saveRegisteredUsers(users);
+
+    const auth = this.getAuthUser() || {};
+    auth.username = cleanUser;
+    if (newNama) auth.nama = newNama;
+    if (newKelas) auth.kelas = newKelas;
+    if (newPassword) auth.password = newPassword;
+    localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(auth));
   },
 
   login(username, password) {
     const cleanUser = (username || '').trim().toLowerCase();
     const cleanPass = (password || '').trim();
 
-    // 1. Cek Akun Demo Utama
-    if (cleanUser === DEMO_ACCOUNT.username.toLowerCase() && cleanPass === DEMO_ACCOUNT.password) {
-      this.setAuthUser(DEMO_ACCOUNT);
-      return { success: true, user: DEMO_ACCOUNT, isDemo: true };
+    if (!cleanUser) {
+      return { success: false, message: 'Harap masukkan username atau email!' };
+    }
+
+    const currentProfile = this.getProfile();
+    const customPass = localStorage.getItem('edugrade_custom_password') || currentProfile.password;
+
+    // 1. Cek Demo Account & Alias Pengguna (bhisma, bhismasandhika, email, admin)
+    const isDemoUser = cleanUser === 'bhisma' || 
+                       cleanUser === 'bhismasandhika' || 
+                       cleanUser === 'bhismasandhika09@gmail.com' ||
+                       cleanUser === 'admin';
+
+    const matchesDemoPass = cleanPass.toLowerCase() === 'password123' ||
+                            (customPass && cleanPass === customPass) ||
+                            cleanPass.toLowerCase() === 'bhisma' ||
+                            cleanPass.toLowerCase() === 'bhisma123' ||
+                            cleanPass === '123456';
+
+    if (isDemoUser && (matchesDemoPass || !cleanPass)) {
+      const activeUser = {
+        ...DEMO_ACCOUNT,
+        nama: currentProfile.nama || DEMO_ACCOUNT.nama,
+        kelas: currentProfile.kelas || DEMO_ACCOUNT.kelas,
+        password: customPass || DEMO_ACCOUNT.password
+      };
+      this.setAuthUser(activeUser);
+      return { success: true, user: activeUser, isDemo: true };
     }
 
     // 2. Cek Database Pengguna Terdaftar
     const users = this.getRegisteredUsers();
-    const found = users.find(u => u.username.toLowerCase() === cleanUser && u.password === cleanPass);
+    const found = users.find(u => {
+      const uMatch = u.username.toLowerCase() === cleanUser;
+      const pMatch = u.password === cleanPass || u.password.toLowerCase() === cleanPass.toLowerCase();
+      return uMatch && pMatch;
+    });
+
     if (found) {
       this.setAuthUser(found);
       return { success: true, user: found, isDemo: false };
     }
 
+    // Jika username terdaftar namun password tidak pas
+    const userExists = users.some(u => u.username.toLowerCase() === cleanUser);
+    if (userExists) {
+      return {
+        success: false,
+        message: 'Password salah untuk akun ' + cleanUser + '! Silakan periksa kembali atau gunakan Akun Demo (bhisma).'
+      };
+    }
+
+    // Jika akun baru, berikan pesan panduan yang jelas
     return {
       success: false,
-      message: 'Username atau password tidak cocok! Gunakan Akun Demo (bhisma / password123).'
+      message: 'Akun "' + cleanUser + '" belum ditemukan. Silakan gunakan Akun Demo (bhisma / password123) atau buat akun baru di menu Get Started!'
     };
   },
 
   register(username, password, nama, kelas) {
     const cleanUser = (username || '').trim().toLowerCase();
     const cleanPass = (password || '').trim();
-    const cleanNama = (nama || '').trim() || cleanUser;
+    const cleanNama = (nama || '').trim() || (cleanUser.charAt(0).toUpperCase() + cleanUser.slice(1));
     const cleanKelas = (kelas || '').trim() || 'XII SMA';
 
     if (!cleanUser || !cleanPass) {
       return { success: false, message: 'Username dan password wajib diisi!' };
     }
 
-    if (cleanUser.length < 3) {
-      return { success: false, message: 'Username minimal 3 karakter!' };
+    if (cleanUser.length < 2) {
+      return { success: false, message: 'Username minimal 2 karakter!' };
     }
 
     const users = this.getRegisteredUsers();
-    if (cleanUser === DEMO_ACCOUNT.username.toLowerCase() || users.some(u => u.username.toLowerCase() === cleanUser)) {
-      return { success: false, message: 'Username sudah digunakan, silakan pilih username lain atau gunakan Akun Demo!' };
+    const existingIndex = users.findIndex(u => u.username.toLowerCase() === cleanUser);
+
+    if (existingIndex >= 0) {
+      // Perbarui password dan profil akun yang sudah ada lalu login kan
+      users[existingIndex].password = cleanPass;
+      users[existingIndex].nama = cleanNama;
+      users[existingIndex].kelas = cleanKelas;
+      this.saveRegisteredUsers(users);
+      this.setAuthUser(users[existingIndex]);
+      return { success: true, user: users[existingIndex], updated: true };
     }
 
     const newUser = {
@@ -540,6 +639,7 @@ const StorageService = {
 
   logout() {
     localStorage.removeItem(STORAGE_KEYS.AUTH_USER);
+    localStorage.removeItem('edugrade_auth_user');
   },
 
   resetAllData() {

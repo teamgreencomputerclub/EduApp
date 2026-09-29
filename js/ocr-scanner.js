@@ -1,7 +1,3 @@
-/**
- * EduGrade v1.0 — Client-Side OCR Scanner Simulation
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
 
 const OCRScannerService = {
   SAMPLE_OCR_DATA: [

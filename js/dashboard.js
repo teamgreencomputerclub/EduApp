@@ -1,7 +1,3 @@
-/**
- * EduGrade v1.0 — Dashboard Controller
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
 
 $(document).ready(function () {
   loadDashboardData();

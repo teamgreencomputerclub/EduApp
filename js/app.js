@@ -1,7 +1,4 @@
-/**
- * EduGrade v1.0 — Global App Script & UI Controller
- * Lomba INVENTION 2026: "Building Smarter Communities Through Digital Learning"
- */
+
 
 $(document).ready(function () {
   // Inisialisasi Profil & Header
@@ -168,36 +165,39 @@ function setupGlobalModals() {
     currentProfile.nama = newName;
     currentProfile.kelas = newClass;
     if (newPass) {
+      currentProfile.password = newPass;
       currentProfile.passwordUpdated = true;
     }
 
     StorageService.setProfile(currentProfile);
+    window.__INITIAL_PROFILE__ = currentProfile;
+
+    // Sinkronkan juga kredensial auth & database user
+    const currentAuth = StorageService.getAuthUser() || { username: 'bhisma' };
+    StorageService.updateUserCredentials(currentAuth.username || 'bhisma', newPass, newName, newClass);
+
     syncGlobalProfile();
-    showToast('Profil akun berhasil diperbarui!');
+    showToast('Profil akun & identitas berhasil diperbarui!', 'success');
     closeAllModals();
   });
 
   // Tombol Reset Akun di Modal Setting
   $(document).on('click', '#btn-reset-akun', function () {
-    if (confirm('Apakah Anda yakin ingin mereset seluruh data simulasi ke pengaturan bawaan awal? Tindakan ini akan mengembalikan data nilai dan tools.')) {
-      StorageService.resetAllData();
-      showToast('Seluruh data simulasi telah di-reset ke nilai default!', 'info');
-      setTimeout(() => {
-        window.location.reload();
-      }, 600);
-    }
+    StorageService.resetAllData();
+    showToast('Seluruh data simulasi telah di-reset ke nilai default!', 'info');
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   });
 
   // Tombol Logout Global
   $(document).on('click', '.btn-logout', function (e) {
     e.preventDefault();
-    if (confirm('Apakah kamu yakin ingin keluar dari akun?')) {
-      StorageService.logout();
-      showToast('Kamu telah keluar dari akun. Mengalihkan ke Beranda...', 'info');
-      setTimeout(() => {
-        window.location.href = 'home.html';
-      }, 500);
-    }
+    StorageService.logout();
+    showToast('Kamu telah keluar dari akun. Mengalihkan ke Beranda...', 'info');
+    setTimeout(() => {
+      window.location.href = 'home.html';
+    }, 400);
   });
 
   // Feedback form di Guide Modal Contact Tab
